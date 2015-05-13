@@ -1,0 +1,29 @@
+<title>Threads</title>
+
+<div>Threads</div>
+
+<div class="sign_out"><a href="/leave"><button class="form-control btn-primary" style="margin-top: -110%;">Sign Out</button></a></div>
+<div class="sign_out"><button class="form-control btn-info" style="margin-top: -116%;"><%= session[:hello] %></button></div>
+
+<div>
+  <br>
+  <form method="post" action="/create_thread" class="form-inline">
+    <div class="form-group">
+      <input type="text" name="name" placeholder="Thread Title" class="form-control">
+    </div> <br> <br>
+    <div class="form-group">
+      <input type="submit" value="Create" class="form-control btn btn-primary">
+    </div> <br><br>
+  </form>
+</div>
+
+<div><%= session[:message] %></div>
+<div>
+  <% @threads.each do |thread| %>
+      <div class="thread_title">
+        <button class="btn btn-info thread-btn"><a href="/thread/<%= thread.id %>/posts"><%= thread.name %></a> by <%= thread.user.username %></a></button>
+        <a class=" btn btn-warning edit-btn" href="/thread/<%= thread.id %>/edit">✎</a>
+        <a class="btn btn-danger delete-btn" href="/thread/<%= thread.id %>/delete">X</a>
+      </div>
+  <% end %>
+</div>
